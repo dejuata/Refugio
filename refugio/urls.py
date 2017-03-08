@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.contrib.auth.views import login
+from django.contrib.auth.views import login, logout_then_login
 
 urlpatterns = [
     url(r'^$', login, {'template_name':'index.html'}, name='login' ),
@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'^mascota/', include('app.mascota.urls', namespace='mascota')),
     url(r'^adopcion/', include('app.adopcion.urls', namespace='adopcion')),
     url(r'^usuario/', include('app.usuario.urls', namespace='usuario')),
+    url(r'^accounts/login/', login, {'template_name':'index.html'}, name='login'),
+    url(r'^logout/', logout_then_login, name='logout'),
 ]
