@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^mascota/', include('app.mascota.urls', namespace='mascota')),
     url(r'^adopcion/', include('app.adopcion.urls', namespace='adopcion')),
+    url(r'^usuario/', include('app.usuario.urls', namespace='usuario')),
 ]
