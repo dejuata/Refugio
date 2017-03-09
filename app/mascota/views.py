@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.core import serializers
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+
 from app.mascota.forms import MascotaForm
 from app.mascota.models import Mascota
 
 # Create your views here.
 def index(request):
     return render(request, 'mascota/index.html')
+    
+def listado(request):
+	lista = serializers.serialize('json', Mascota.objects.all(), fields=['nombre','sexo'])
+	return HttpResponse(lista, content_type='application/json')
     
 def mascota_view(request):
     if request.method == 'POST':
